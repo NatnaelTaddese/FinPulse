@@ -16,4 +16,9 @@ vaadin-text-field.bordered::part(input-field) {
   background-color: var(--lumo-base-color);
 }
 
+.drawer-app-name {
+  padding-top: 56px;
+  background: aquamarine;
+}
+
 
