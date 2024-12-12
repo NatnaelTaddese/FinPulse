@@ -7,8 +7,9 @@ import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.auth.AnonymousAllowed;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.example.GreetService;
+import org.vaadin.example.service.GreetService;
 
 /**
  * A sample Vaadin view class.
@@ -22,6 +23,8 @@ import org.vaadin.example.GreetService;
  * The main view contains a text field for getting the user name and a button
  * that shows a greeting message in a notification.
  */
+
+@AnonymousAllowed
 @Route
 public class MainView extends VerticalLayout {
 
@@ -41,6 +44,10 @@ public class MainView extends VerticalLayout {
 
         // Button click listeners can be defined as lambda expressions
         Button button = new Button("Say hello", e -> {
+            if(textField.getValue().equals("login")){
+                // navigate to dashboard view
+                getUI().ifPresent(ui -> ui.navigate("dashboard"));
+            }
             add(new Paragraph(service.greet(textField.getValue())));
         });
 

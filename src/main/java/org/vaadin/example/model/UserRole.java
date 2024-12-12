@@ -1,4 +1,6 @@
 package org.vaadin.example.model;
 
-public class UserRole {
+public enum UserRole {
+    USER,
+    ADMIN
 }
