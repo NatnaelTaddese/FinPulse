@@ -30,12 +30,27 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
 
+    private double income;
+    private double dailySpendingLimit;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<FinancialGoal> financialGoals;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<SpendingCategory> spendingCategories;
+
+    public double getIncome() {
+        return income;
+    }
+
+    public void setIncome(double income) {
+        this.income = income;
+    }
+
     // Constructors
     public User() {
         this.createdAt = LocalDateTime.now();
     }
-
-    // Getters and setters
 
 
     public Long getId() {
@@ -94,5 +109,15 @@ public class User {
         this.roles = roles;
     }
 
-    // (Generate or use Lombok @Data)
+    public double getDailySpendingLimit() {
+        return dailySpendingLimit;
+    }
+
+    public Set<FinancialGoal> getFinancialGoals() {
+        return financialGoals;
+    }
+
+    public Set<SpendingCategory> getSpendingCategories() {
+        return spendingCategories;
+    }
 }

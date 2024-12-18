@@ -1,8 +1,22 @@
+@import "theme-editor.css";
 /*
    CSS styling examples for the Vaadin app.
 
    Visit https://vaadin.com/docs/styling/application-theme/ for more information.
 */
+
+@font-face {
+  font-family: 'InterVariable';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: 'Parafina';
+  src: url("ParafinaTrial-BlackM-BF66bd7815b9340.otf");
+}
 
 /* Example: CSS class name to center align the content . */
 .centered-content {
@@ -21,4 +35,16 @@ vaadin-text-field.bordered::part(input-field) {
   background: aquamarine;
 }
 
+.centered-title {
+  text-align: center;
+}
 
+:root {
+  --lumo-font-family: 'InterVariable', serif, sans-serif;
+
+}
+
+h1 {
+  font-family: 'Parafina', serif;
+
+}

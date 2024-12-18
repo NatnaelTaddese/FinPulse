@@ -7,6 +7,7 @@ import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
+import com.vaadin.flow.theme.Theme;
 import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 
 @AnonymousAllowed
@@ -26,7 +27,7 @@ public class LoginView extends VerticalLayout {
                         "document.querySelector('form').submit();"
         );
 
-        H1 title = new H1("FinPulse Login");
+        H1 title = new H1("FinPulse");
 
         // Link to signup page
         Anchor signupLink = new Anchor("/signup", "Don't have an account? Sign Up");
