@@ -12,12 +12,30 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
+import com.vaadin.flow.router.BeforeEnterEvent;
+import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.vaadin.example.model.User;
+import org.vaadin.example.service.AuthenticationService;
 
 
-public class MainLayout extends AppLayout {
+public class MainLayout extends AppLayout implements BeforeEnterObserver {
+
+    @Autowired
+    private AuthenticationService authenticationService;
+
+    @Override
+    public void beforeEnter(BeforeEnterEvent event) {
+        User currentUser = authenticationService.getCurrentUser();
+
+        // If onboarding is not completed, redirect to onboarding view
+        if (!authenticationService.isOnboardingCompleted(currentUser)) {
+            event.forwardTo("onboarding");  // Redirect to onboarding
+        }
+    }
 
     private Button darkModeToggle;
 

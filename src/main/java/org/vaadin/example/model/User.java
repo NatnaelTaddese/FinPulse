@@ -33,6 +33,8 @@ public class User {
     private double income;
     private double dailySpendingLimit;
 
+    private boolean onboardingCompleted;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<FinancialGoal> financialGoals;
 
@@ -113,11 +115,27 @@ public class User {
         return dailySpendingLimit;
     }
 
+    public boolean isOnboardingCompleted() {
+        return onboardingCompleted;
+    }
+
+    public void setOnboardingCompleted(boolean onboardingCompleted) {
+        this.onboardingCompleted = onboardingCompleted;
+    }
+
     public Set<FinancialGoal> getFinancialGoals() {
         return financialGoals;
     }
 
     public Set<SpendingCategory> getSpendingCategories() {
         return spendingCategories;
+    }
+
+    public void setSpendingCategories(Set<SpendingCategory> spendingCategories) {
+        this.spendingCategories = spendingCategories;
+    }
+
+    public void setDailySpendingLimit(double v) {
+        this.dailySpendingLimit = v;
     }
 }

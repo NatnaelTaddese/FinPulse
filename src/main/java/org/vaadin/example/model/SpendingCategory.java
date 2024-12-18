@@ -30,6 +30,14 @@ public class SpendingCategory {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public void setName(String categoryName) {
+        this.name = categoryName;
+    }
+
+    public void setUser(User currentUser) {
+        this.user = currentUser;
+    }
 }
 
 
