@@ -4,14 +4,12 @@ import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.html.Footer;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Header;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
+import com.vaadin.flow.dom.ThemeList;
 import com.vaadin.flow.router.BeforeEnterEvent;
 import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.server.VaadinSession;
@@ -45,39 +43,83 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         addHeaderContent();
     }
 
+//    private void addHeaderContent() {
+//        DrawerToggle toggle = new DrawerToggle();
+//        H1 applicationTitle = new H1("Financial Intelligence Platform");
+//        applicationTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.XLARGE);
+//
+//
+//
+//        Header header = new Header(toggle, applicationTitle);
+//        header.addClassNames(
+//                LumoUtility.Padding.Vertical.SMALL,
+//                LumoUtility.BorderColor.CONTRAST_10,
+//                LumoUtility.Display.FLEX,
+//                LumoUtility.JustifyContent.BETWEEN
+//        );
+//        addToNavbar(header);
+//    }
+
     private void addHeaderContent() {
         DrawerToggle toggle = new DrawerToggle();
-        H1 applicationTitle = new H1("Financial Intelligence Platform");
-        applicationTitle.addClassNames(LumoUtility.FontSize.LARGE, LumoUtility.Margin.XLARGE);
+        H1 title = new H1("Financial Intelligence Platform");
 
-        // Add logout button
-        Button logoutButton = createLogoutButton();
+        darkModeToggle = new Button("Dark Mode", click -> toggleDarkMode());
+        darkModeToggle.getElement().getStyle().set("margin-left", "auto");
 
-        Header header = new Header(toggle, applicationTitle, logoutButton);
-        header.addClassNames(
-                LumoUtility.Padding.Vertical.SMALL,
-                LumoUtility.BorderColor.CONTRAST_10,
-                LumoUtility.Display.FLEX,
-                LumoUtility.JustifyContent.BETWEEN
-        );
+        Header header = new Header(toggle, title, darkModeToggle);
+        header.addClassNames("main-header");
         addToNavbar(header);
     }
 
-
-
-    private void addDrawerContent() {
-        H2 appName = new H2("FinIntel");
-        appName.addClassNames(LumoUtility.FontSize.LARGE);
-        appName.addClassName("drawer-app-name");
-
-        Scroller scroller = new Scroller(createNavigation());
-
-        addToDrawer(
-                appName,
-                scroller,
-                createFooter()
-        );
+    private void toggleDarkMode() {
+        ThemeList themeList = UI.getCurrent().getElement().getThemeList();
+        if (themeList.contains("dark")) {
+            themeList.remove("dark");
+            darkModeToggle.setText("Dark Mode");
+        } else {
+            themeList.add("dark");
+            darkModeToggle.setText("Light Mode");
+        }
     }
+
+
+
+
+    //    private void addDrawerContent() {
+//        H2 appName = new H2("FinIntel");
+//        appName.addClassNames(LumoUtility.FontSize.LARGE);
+//        appName.addClassName("drawer-app-name");
+//
+//        Scroller scroller = new Scroller(createNavigation());
+//
+//        Button logoutButton = createLogoutButton();
+//
+//
+//        addToDrawer(
+//                appName,
+//                scroller,
+//                logoutButton,
+//                createFooter()
+//        );
+//    }
+private void addDrawerContent() {
+    // Logo or App Name
+    H2 logo = new H2("FinIntel");
+    logo.addClassNames("sidebar-logo");
+
+    // Navigation Menu
+    Scroller navigation = new Scroller(createNavigation());
+    navigation.addClassName("sidebar-nav");
+
+    // Footer (User Profile Section)
+    Footer footer = new Footer();
+    footer.add(createLogoutButton());
+    footer.addClassName("sidebar-footer");
+
+    addToDrawer(logo, navigation, footer);
+}
+
 
     private Button createLogoutButton() {
         Button logoutButton = new Button("Logout", VaadinIcon.SIGN_OUT.create());
@@ -99,12 +141,15 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
     private SideNav createNavigation() {
         SideNav nav = new SideNav();
 
+        // Add logout button
+
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, VaadinIcon.DASHBOARD.create()));
 //        nav.addItem(new SideNavItem("Market Data", MarketDataView.class, VaadinIcon.CHART.create()));
 //        nav.addItem(new SideNavItem("Portfolio", PortfolioView.class, VaadinIcon.BRIEFCASE.create()));
 //        nav.addItem(new SideNavItem("Analytics", AnalyticsView.class, VaadinIcon.CALC.create()));
 //        nav.addItem(new SideNavItem("Risk Management", RiskView.class, VaadinIcon.SHIELD.create()));
 //        nav.addItem(new SideNavItem("Trading", TradingView.class, VaadinIcon.EXCHANGE.create()));
+
 
         return nav;
     }

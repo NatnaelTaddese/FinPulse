@@ -65,4 +65,7 @@ public class AuthenticationService {
         return user.isOnboardingCompleted();
     }
 
+    public boolean userExists(String usernameFieldValue) {
+        return userRepository.existsByUsername(usernameFieldValue);
+    }
 }

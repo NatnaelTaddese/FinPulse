@@ -98,3 +98,87 @@ h1 {
 .red-text {
     color: var(--red);
 }
+
+
+/* General Sidebar Styling */
+vaadin-app-layout::part(drawer) {
+    background-color: var(--lumo-base-color);
+    color: var(--text-color);
+    width: 250px;
+    padding: 16px;
+}
+
+/* Sidebar Logo Styling */
+.sidebar-logo {
+    font-size: var(--lumo-font-size-xl);
+    font-weight: bold;
+    margin: 16px;
+}
+
+/* Navigation Item Styling */
+vaadin-side-nav-item::part(content) {
+    padding: 10px 16px;
+    font-size: var(--lumo-font-size-m);
+    color: var(--text-color);
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+vaadin-side-nav-item:hover::part(content) {
+    background-color: var(--lumo-contrast-10pct);
+}
+
+vaadin-side-nav-item[selected]::part(content) {
+    background-color: var(--lumo-primary-color-10pct);
+    color: var(--lumo-primary-color);
+}
+
+/* Sidebar Footer (User Profile Section) */
+.sidebar-footer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    font-size: var(--lumo-font-size-s);
+    color: var(--text-color);
+    border-top: 1px solid var(--lumo-contrast-10pct);
+}
+
+.sidebar-footer span:first-child {
+    background-color: #ffd700; /* Yellow Circle */
+    color: black;
+    font-weight: bold;
+    border-radius: 50%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+    width: 32px;
+    font-size: var(--lumo-font-size-m);
+}
+
+/* Dark Mode Support */
+html[theme~="dark"] {
+    --lumo-base-color: #1e1e1e;
+    --lumo-contrast: #252526;
+    --lumo-text-color: #ffffff;
+    --lumo-border-color: #333;
+}
+
+html[theme~="dark"] vaadin-side-nav-item::part(content) {
+    color: var(--lumo-text-color);
+}
+
+html[theme~="dark"] vaadin-side-nav-item[selected]::part(content),
+html[theme~="dark"] vaadin-side-nav-item:hover::part(content) {
+    background-color: var(--lumo-shade-20pct);
+    color: var(--lumo-primary-color);
+}
+
+
+html {
+    --lumo-font-family: 'Inter', sans-serif;
+    --lumo-font-size-m: 1rem;
+    --lumo-line-height-m: 1.5;
+}
+

@@ -20,9 +20,6 @@ public class SpendingCategory {
     @JoinColumn(name = "user_id")
     private User user;
 
-    // Constructors, getters, and setters
-
-
     public Long getId() {
         return id;
     }
@@ -33,6 +30,14 @@ public class SpendingCategory {
 
     public void setName(String categoryName) {
         this.name = categoryName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getBudgetAmount() {
+        return budgetAmount;
     }
 
     public void setUser(User currentUser) {

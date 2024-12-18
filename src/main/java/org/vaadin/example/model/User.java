@@ -49,11 +49,10 @@ public class User {
         this.income = income;
     }
 
-    // Constructors
+
     public User() {
         this.createdAt = LocalDateTime.now();
     }
-
 
     public Long getId() {
         return id;

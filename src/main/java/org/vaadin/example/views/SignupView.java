@@ -3,6 +3,7 @@ package org.vaadin.example.views;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
+import com.vaadin.flow.component.html.Anchor;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.notification.Notification;
@@ -83,13 +84,20 @@ public class SignupView extends VerticalLayout {
                 .set("width", "100%")
                 .set("margin-top", "20px");
 
+        Anchor loginLink = new Anchor("/login", "Already have an account? Log In");
+        loginLink.getStyle()
+                .set("display", "block")
+                .set("text-align", "center")
+                .set("margin-top", "20px");
+
         // Layout
         FormLayout formLayout = new FormLayout(
                 usernameField,
                 emailField,
                 passwordField,
                 confirmPasswordField,
-                signupButton
+                signupButton,
+                loginLink
         );
         formLayout.setResponsiveSteps(
                 new FormLayout.ResponsiveStep("0", 1)
@@ -154,6 +162,25 @@ public class SignupView extends VerticalLayout {
         // Username validation
         if (usernameField.getValue().trim().isEmpty()) {
             usernameField.setInvalid(true);
+            isValid = false;
+        }
+        // if username already exists
+        if (authenticationService.userExists(usernameField.getValue())) {
+            usernameField.setErrorMessage("Username already exists");
+            usernameField.setInvalid(true);
+            isValid = false;
+        }
+
+        // Email validation
+        if (emailField.getValue().trim().isEmpty()) {
+            emailField.setInvalid(true);
+            isValid = false;
+        }
+
+        // valid email address
+        if (!emailField.getValue().matches("^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
+            emailField.setErrorMessage("Please enter a valid email address");
+            emailField.setInvalid(true);
             isValid = false;
         }
 

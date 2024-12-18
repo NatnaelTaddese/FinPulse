@@ -2,6 +2,7 @@ package org.vaadin.example.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.vaadin.example.model.Expense;
+import org.vaadin.example.model.SpendingCategory;
 import org.vaadin.example.model.User;
 
 import java.time.LocalDate;
@@ -18,4 +19,5 @@ public interface ExpenseRepository extends JpaRepository<Expense, Long> {
 
     List<Expense> findByUserAndDateBetween(User user, LocalDateTime startDate, LocalDateTime endDate);
 
+    List<Expense> findByCategory(SpendingCategory category);
 }

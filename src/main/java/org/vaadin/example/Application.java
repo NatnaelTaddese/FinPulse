@@ -17,7 +17,8 @@ import io.github.cdimascio.dotenv.Dotenv;
  */
 @SpringBootApplication
 @PWA(name = "Financial Intelligent platform ", shortName = "FinPulse App")
-@Theme("my-theme")
+//@Theme("my-theme")
+@Theme("finpulse-default-theme")
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {
