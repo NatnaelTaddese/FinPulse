@@ -3,6 +3,7 @@ package org.vaadin.example.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 @Table(name = "expenses")
@@ -97,5 +98,9 @@ public class Expense {
     @PrePersist
     protected void onCreate() {
         this.createdAt = LocalDateTime.now();
+    }
+
+    public LocalTime getTime() {
+        return date.toLocalTime();
     }
 }

@@ -144,6 +144,8 @@ private void addDrawerContent() {
         // Add logout button
 
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, VaadinIcon.DASHBOARD.create()));
+        nav.addItem(new SideNavItem("Expenses", ExpenseView.class, VaadinIcon.ADD_DOCK.create()));
+        nav.addItem(new SideNavItem("History", HistoryView.class, VaadinIcon.CALENDAR_USER.create()));
 //        nav.addItem(new SideNavItem("Market Data", MarketDataView.class, VaadinIcon.CHART.create()));
 //        nav.addItem(new SideNavItem("Portfolio", PortfolioView.class, VaadinIcon.BRIEFCASE.create()));
 //        nav.addItem(new SideNavItem("Analytics", AnalyticsView.class, VaadinIcon.CALC.create()));

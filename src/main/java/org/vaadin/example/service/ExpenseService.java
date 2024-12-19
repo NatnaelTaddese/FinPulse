@@ -35,7 +35,7 @@ public class ExpenseService {
 
     // Get expenses for a user filtered by category name
     public List<Expense> getExpensesByCategory(User user, String categoryName) {
-        return expenseRepository.findByUserAndCategoryName(user, categoryName); // Adjusted to match the correct method
+        return expenseRepository.findByUserAndCategoryName(user, categoryName);
     }
 
     // Get expenses for a user within a date range (using createdAt)
@@ -51,5 +51,9 @@ public class ExpenseService {
             expenseRepository.save(expense);
         }
         spendingCategoryRepository.delete(category);
+    }
+
+    public List<Expense> getExpensesByUser(User currentUser) {
+        return expenseRepository.findByUser(currentUser);
     }
 }
