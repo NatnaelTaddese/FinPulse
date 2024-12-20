@@ -30,6 +30,12 @@ public class Application implements AppShellConfigurator {
         System.setProperty("SPRING_SECURITY_USER_NAME", dotenv.get("SPRING_SECURITY_USER_NAME"));
         System.setProperty("SPRING_SECURITY_USER_PASSWORD", dotenv.get("SPRING_SECURITY_USER_PASSWORD"));
 
+        System.setProperty("ALIPAY_APP_ID", dotenv.get("ALIPAY_APP_ID"));
+        System.setProperty("ALIPAY_PRIVATE_KEY", dotenv.get("ALIPAY_PRIVATE_KEY"));
+        System.setProperty("ALIPAY_PUBLIC_KEY", dotenv.get("ALIPAY_PUBLIC_KEY"));
+        System.setProperty("APPLICATION_PUBLIC_KEY", dotenv.get("APPLICATION_PUBLIC_KEY"));
+
+
         System.setProperty("jna.nosys", "true");
 
         SpringApplication.run(Application.class, args);

@@ -4,15 +4,17 @@ import org.springframework.security.core.GrantedAuthority;
 import org.vaadin.example.model.FinancialGoal;
 import org.vaadin.example.model.SpendingCategory;
 
+import java.io.Serializable;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 
-public class CustomUserDetails extends org.springframework.security.core.userdetails.User {
-    private  Double income;
-    private  Double dailySpendingLimit;
-    private  Set<FinancialGoal> financialGoals;
-    private  Set<SpendingCategory> spendingCategories;
+public class CustomUserDetails extends org.springframework.security.core.userdetails.User implements Serializable {
+    private static final long serialVersionUID = 1L;
+
+    private Double income;
+    private Double dailySpendingLimit;
+    private Set<FinancialGoal> financialGoals;
+    private Set<SpendingCategory> spendingCategories;
 
     public CustomUserDetails(
             String username,
@@ -63,6 +65,4 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
     public void setSpendingCategories(Set<SpendingCategory> spendingCategories) {
         this.spendingCategories = spendingCategories;
     }
-
-
 }

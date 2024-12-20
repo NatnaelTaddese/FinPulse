@@ -1,14 +1,17 @@
 package org.vaadin.example.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.vaadin.example.model.FinancialGoal;
 import org.vaadin.example.model.SpendingCategory;
+import org.vaadin.example.model.User;
 import org.vaadin.example.repository.FinancialGoalRepository;
 import org.vaadin.example.repository.SpendingCategoryRepository;
 import org.vaadin.example.repository.UserRepository;
 
 @Service
 public class UserService {
+    @Autowired
     private final UserRepository userRepository;
     private final FinancialGoalRepository financialGoalRepository;
     private final SpendingCategoryRepository spendingCategoryRepository;
@@ -45,5 +48,9 @@ public class UserService {
 
     public void deleteSpendingCategory(SpendingCategory category) {
         spendingCategoryRepository.delete(category);
+    }
+
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 }

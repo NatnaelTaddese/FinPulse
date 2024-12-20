@@ -26,6 +26,9 @@ public class User {
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 
+    @Column(name = "alipay_token")
+    private String alipayToken;
+
     @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<UserRole> roles;
@@ -136,5 +139,13 @@ public class User {
 
     public void setDailySpendingLimit(double v) {
         this.dailySpendingLimit = v;
+    }
+
+    public String getAlipayToken() {
+        return alipayToken;
+    }
+
+    public void setAlipayToken(String alipayToken) {
+        this.alipayToken = alipayToken;
     }
 }
