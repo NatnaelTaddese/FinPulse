@@ -36,6 +36,20 @@ public class User {
     private double income;
     private double dailySpendingLimit;
 
+    @Column(name = "monthly_saving_goal", nullable = true)
+    private double monthlySavingGoal;
+
+    @Column(name = "current_balance", nullable = true)
+    private double currentBalance;
+    @Column(name = "current_savings", nullable = true)
+    private double currentSavings;
+
+    private String paySchedule;
+    private String firstName;
+    private String lastName;
+    private String preferredCurrency;
+
+
     private boolean onboardingCompleted;
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -52,6 +66,61 @@ public class User {
         this.income = income;
     }
 
+    public double getCurrentBalance() {
+        return currentBalance;
+    }
+
+    public void setCurrentBalance(double currentBalance) {
+        this.currentBalance = currentBalance;
+    }
+
+    public double getCurrentSavings() {
+        return currentSavings;
+    }
+
+    public void setCurrentSavings(double currentSavings) {
+        this.currentSavings = currentSavings;
+    }
+
+    public String getPaySchedule() {
+        return paySchedule;
+    }
+
+    public void setPaySchedule(String paySchedule) {
+        this.paySchedule = paySchedule;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getPreferredCurrency() {
+        return preferredCurrency;
+    }
+
+    public void setPreferredCurrency(String preferredCurrency) {
+        this.preferredCurrency = preferredCurrency;
+    }
+
+    public double getMonthlySavingGoal() {
+        return monthlySavingGoal;
+    }
+
+    public void setMonthlySavingGoal(double monthlySavingGoal) {
+        this.monthlySavingGoal = monthlySavingGoal;
+    }
 
     public User() {
         this.createdAt = LocalDateTime.now();

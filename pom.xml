@@ -120,6 +120,12 @@
             <version>4.40.16.ALL</version>
         </dependency>
 
+        <!-- Fastjson -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.83</version>
+        </dependency>
     </dependencies>
 
     <build>
