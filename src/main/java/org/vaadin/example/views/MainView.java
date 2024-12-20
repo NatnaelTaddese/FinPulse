@@ -1,5 +1,7 @@
 package org.vaadin.example.views;
 
+import com.vaadin.flow.theme.lumo.LumoUtility;
+
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
@@ -42,6 +44,119 @@ public class MainView extends VerticalLayout {
 
         H1 title = new H1("Welcome to FinPulse");
         title.addClassName("centered-title");
+// Boilerplate code from the Vaadin starter project
+// FOR REFERENCE
+//        // Use TextField for standard text input
+//        TextField textField = new TextField("Your name");
+//        textField.addClassName("bordered");
+//
+//        // Button click listeners can be defined as lambda expressions
+//        Button button = new Button("Say hello", e -> {
+//            if(textField.getValue().equals("login")){
+//                // navigate to dashboard view
+//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
+//            }
+//            add(new Paragraph(service.greet(textField.getValue())));
+//        });
+//
+//        // Theme variants give you predefined extra styles for components.
+//        // Example: Primary button has a more prominent look.
+//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+//
+//        // You can specify keyboard shortcuts for buttons.
+//        // Example: Pressing enter in this view clicks the Button.
+//        button.addClickShortcut(Key.ENTER);
+//
+//        // Use custom CSS classes to apply styling. This is defined in
+//        // styles.css.
+//        addClassName("centered-content");
+//
+//        add(textField, button);
+title.addClassNames(LumoUtility.AlignSelf.CENTER);
+// Boilerplate code from the Vaadin starter project
+// FOR REFERENCE
+//        // Use TextField for standard text input
+//        TextField textField = new TextField("Your name");
+//        textField.addClassName("bordered");
+//
+//        // Button click listeners can be defined as lambda expressions
+//        Button button = new Button("Say hello", e -> {
+//            if(textField.getValue().equals("login")){
+//                // navigate to dashboard view
+//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
+//            }
+//            add(new Paragraph(service.greet(textField.getValue())));
+//        });
+//
+//        // Theme variants give you predefined extra styles for components.
+//        // Example: Primary button has a more prominent look.
+//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+//
+//        // You can specify keyboard shortcuts for buttons.
+//        // Example: Pressing enter in this view clicks the Button.
+//        button.addClickShortcut(Key.ENTER);
+//
+//        // Use custom CSS classes to apply styling. This is defined in
+//        // styles.css.
+//        addClassName("centered-content");
+//
+//        add(textField, button);
+// Boilerplate code from the Vaadin starter project
+// FOR REFERENCE
+//        // Use TextField for standard text input
+//        TextField textField = new TextField("Your name");
+//        textField.addClassName("bordered");
+//
+//        // Button click listeners can be defined as lambda expressions
+//        Button button = new Button("Say hello", e -> {
+//            if(textField.getValue().equals("login")){
+//                // navigate to dashboard view
+//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
+//            }
+//            add(new Paragraph(service.greet(textField.getValue())));
+//        });
+//
+//        // Theme variants give you predefined extra styles for components.
+//        // Example: Primary button has a more prominent look.
+//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+//
+//        // You can specify keyboard shortcuts for buttons.
+//        // Example: Pressing enter in this view clicks the Button.
+//        button.addClickShortcut(Key.ENTER);
+//
+//        // Use custom CSS classes to apply styling. This is defined in
+//        // styles.css.
+//        addClassName("centered-content");
+//
+//        add(textField, button);
+// Boilerplate code from the Vaadin starter project
+// FOR REFERENCE
+//        // Use TextField for standard text input
+//        TextField textField = new TextField("Your name");
+//        textField.addClassName("bordered");
+//
+//        // Button click listeners can be defined as lambda expressions
+//        Button button = new Button("Say hello", e -> {
+//            if(textField.getValue().equals("login")){
+//                // navigate to dashboard view
+//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
+//            }
+//            add(new Paragraph(service.greet(textField.getValue())));
+//        });
+//
+//        // Theme variants give you predefined extra styles for components.
+//        // Example: Primary button has a more prominent look.
+//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+//
+//        // You can specify keyboard shortcuts for buttons.
+//        // Example: Pressing enter in this view clicks the Button.
+//        button.addClickShortcut(Key.ENTER);
+//
+//        // Use custom CSS classes to apply styling. This is defined in
+//        // styles.css.
+//        addClassName("centered-content");
+//
+//        add(textField, button);
 
         Button loginButton = new Button("Login", e -> {
             // navigate to login view

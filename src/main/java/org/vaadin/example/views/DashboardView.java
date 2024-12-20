@@ -1,5 +1,33 @@
 package org.vaadin.example.views;
 
+import com.vaadin.flow.component.charts.Chart;
+
+import com.vaadin.flow.component.charts.model.ChartType;
+
+import com.vaadin.flow.component.charts.model.ListSeries;
+
+import com.vaadin.flow.component.html.UnorderedList;
+
+import com.vaadin.flow.component.html.ListItem;
+
+import com.vaadin.flow.component.html.Image;
+
+import com.vaadin.flow.component.html.Span;
+
+import com.vaadin.flow.component.html.Header;
+
+import com.vaadin.flow.theme.lumo.LumoUtility;
+
+import com.vaadin.flow.component.html.Div;
+
+import com.vaadin.flow.component.icon.Icon;
+
+import com.vaadin.flow.component.sidenav.SideNav;
+
+import com.vaadin.flow.component.sidenav.SideNavItem;
+
+import com.vaadin.flow.component.avatar.Avatar;
+
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
@@ -64,6 +92,18 @@ public class DashboardView extends Composite<VerticalLayout> {
         });
 
         layout.add(connectAlipayButton);
+Chart chart = new Chart(ChartType.LINE);
+chart.setMinHeight("400px");
+chart.getConfiguration().setTitle("Sales 2023");
+chart.getConfiguration().getxAxis().setCategories("Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec");
+chart.getConfiguration().getyAxis().setTitle("Euro (€)");
+ListSeries listseries = new ListSeries("Product A");
+listseries.setData(42112, 58698, 12276, 33202, 74518, 45498, 42477, 17896, 44297, 22456, 38547, 12621);
+chart.getConfiguration().addSeries(listseries);
+ListSeries listseries2 = new ListSeries("Product B");
+listseries2.setData(70972, 48589, 94434, 58270, 77282, 7108, 54085, 44401, 28868, 79643, 14383, 76036);
+chart.getConfiguration().addSeries(listseries2);
+getContent().add(chart);
         getContent().add(layout);
     }
 

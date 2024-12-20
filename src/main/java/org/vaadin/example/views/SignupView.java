@@ -1,5 +1,7 @@
 package org.vaadin.example.views;
 
+import com.vaadin.flow.theme.lumo.LumoUtility;
+
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.formlayout.FormLayout;
@@ -107,6 +109,7 @@ public class SignupView extends VerticalLayout {
         formLayout.setColspan(passwordField, 1);
         formLayout.setColspan(confirmPasswordField, 1);
         formLayout.setColspan(signupButton, 1);
+formLayout.addClassNames(LumoUtility.AlignSelf.START);
 
         // Add components
         add(title, subtitle, formLayout);

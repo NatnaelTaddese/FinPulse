@@ -14,6 +14,7 @@ import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.tabs.TabSheet;
+import com.vaadin.flow.component.tabs.TabSheetVariant;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.notification.Notification;
@@ -157,6 +158,10 @@ public class OnboardingView extends Composite<VerticalLayout> {
         tabSheet.add("Financial Details", financialInfo);
         tabSheet.add("Payment Methods", paymentMethods);
         tabSheet.addClassName("tab-sheet-centered");
+
+        tabSheet.addThemeVariants(TabSheetVariant.LUMO_BORDERED);
+        tabSheet.addThemeVariants(TabSheetVariant.LUMO_TABS_CENTERED);
+
     }
 
     private TextField createTextField(String label, String placeholder) {
