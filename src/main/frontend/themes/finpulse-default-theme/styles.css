@@ -1,9 +1,17 @@
 @import url(https://cdn.jsdelivr.net/fontsource/css/inter@latest/index.css);
 @import url(https://cdn.jsdelivr.net/fontsource/css/merriweather@latest/index.css);
 
-h1 {
-    font-weight:bold;
-    /*font-family: Merriweather, serif;*/
+@font-face {
+    font-family: 'InterVariable';
+    font-style: normal;
+    font-weight: 100 900;
+    font-display: swap;
+    src: url("InterVariable.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: 'Parafina';
+    src: url("ParafinaTrial-BlackM-BF66bd7815b9340.otf");
 }
 
 html {
@@ -17,9 +25,15 @@ html {
     --lumo-font-size-xxl:1.75rem;
     --lumo-font-size-xxs:0.75rem;
     --lumo-font-size-xxxl:2.5rem;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
 }
 
 :root {
+    --lumo-font-family: 'InterVariable', serif, sans-serif;
+
     --background-color: #f5f7fa;
     --widget-color: #ffffff;
     --text-color: #333333;
@@ -27,17 +41,60 @@ html {
     --red: #e74c3c;
 }
 
-@font-face {
-    font-family: 'InterVariable';
-    font-style: normal;
-    font-weight: 100 900;
-    font-display: swap;
-    src: url("InterVariable.woff2") format("woff2");
+h1 {
+    font-family: 'Parafina', serif;
+    font-weight:bold;
+    /*font-family: Merriweather, serif;*/
 }
 
-@font-face {
-    font-family: 'Parafina';
-    src: url("ParafinaTrial-BlackM-BF66bd7815b9340.otf");
+
+
+/*BUTTONS*/
+
+vaadin-button {
+    border-radius: 300px;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+    transition: all 0.2s;
+
+    cursor: pointer;
+}
+
+vaadin-button[theme~="primary"] {
+    border: 3px solid rgba(0, 0, 0, 0.212);
+
+}
+
+vaadin-button[theme~="tertiary"] {
+    margin-top: 0.5rem;
+    border-radius: 300px;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+    &:hover {
+
+    }
+}
+
+vaadin-text-field {
+    border-radius: 300px;
+    padding-block: 1.5rem;
+}
+
+
+vaadin-tabsheet::part(tabs-container) {
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+}
+
+vaadin-tabs{
+    --lumo-tabs-border-radius: 0;
+    --lumo-tabs-item-padding: 0 1em;
+}
+
+vaadin-tabsheet::part(content) {
+    margin: 0 auto;
+    max-width: 600px;
 }
 
 /* Example: CSS class name to center align the content . */
@@ -52,29 +109,12 @@ vaadin-text-field.bordered::part(input-field) {
     background-color: var(--lumo-base-color);
 }
 
-.drawer-app-name {
-    padding-top: 56px;
-    background: aquamarine;
-}
-
 .centered-title {
     text-align: center;
 }
 
-:root {
-    --lumo-font-family: 'InterVariable', serif, sans-serif;
-
-}
-
-h1 {
-    font-family: 'Parafina', serif;
-
-}
-
-
-.dashboard-container {
-    background-color: var(--background-color);
-    padding: 20px;
+.no-wrap {
+    white-space: nowrap;
 }
 
 .widget {
@@ -89,72 +129,6 @@ h1 {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 10px;
-}
-
-.green-text {
-    color: var(--green);
-}
-
-.red-text {
-    color: var(--red);
-}
-
-
-/* General Sidebar Styling */
-vaadin-app-layout::part(drawer) {
-    background-color: var(--lumo-base-color);
-    color: var(--text-color);
-    width: 250px;
-    padding: 16px;
-}
-
-/* Sidebar Logo Styling */
-.sidebar-logo {
-    font-size: var(--lumo-font-size-xl);
-    font-weight: bold;
-    margin: 16px;
-}
-
-/* Navigation Item Styling */
-vaadin-side-nav-item::part(content) {
-    padding: 10px 16px;
-    font-size: var(--lumo-font-size-m);
-    color: var(--text-color);
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
-}
-
-vaadin-side-nav-item:hover::part(content) {
-    background-color: var(--lumo-contrast-10pct);
-}
-
-vaadin-side-nav-item[selected]::part(content) {
-    background-color: var(--lumo-primary-color-10pct);
-    color: var(--lumo-primary-color);
-}
-
-/* Sidebar Footer (User Profile Section) */
-.sidebar-footer {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 16px;
-    font-size: var(--lumo-font-size-s);
-    color: var(--text-color);
-    border-top: 1px solid var(--lumo-contrast-10pct);
-}
-
-.sidebar-footer span:first-child {
-    background-color: #ffd700; /* Yellow Circle */
-    color: black;
-    font-weight: bold;
-    border-radius: 50%;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    height: 32px;
-    width: 32px;
-    font-size: var(--lumo-font-size-m);
 }
 
 /* Dark Mode Support */
@@ -176,13 +150,6 @@ html[theme~="dark"] vaadin-side-nav-item:hover::part(content) {
 }
 
 
-html {
-    --lumo-font-family: 'Inter', sans-serif;
-    --lumo-font-size-m: 1rem;
-    --lumo-line-height-m: 1.5;
-}
-
-
 .onboarding-tab {
     max-width: 600px;
     margin: 0 auto;
@@ -199,28 +166,11 @@ vaadin-form-layout {
     --vaadin-form-layout-column-spacing: 2em;
 }
 
-vaadin-button {
-    margin-top: 2em;
-}
-
-/* Center the message and description fields */
-.centered-text {
-    text-align: center;
+vaadin-app-layout::part(navbar) {
+    justify-content: space-between;
+    padding-right: 16px;
 }
 
 
-vaadin-tabsheet::part(tabs-container) {
-    justify-content: center;
-    margin: auto;
-    width: 100%;
-}
 
-vaadin-tabs{
-    --lumo-tabs-border-radius: 0;
-    --lumo-tabs-item-padding: 0 1em;
-}
 
-vaadin-tabsheet::part(content) {
-    margin: 0 auto;
-    max-width: 600px;
-}

@@ -3,9 +3,12 @@ package org.vaadin.example.views;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.applayout.DrawerToggle;
+import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.icon.SvgIcon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.sidenav.SideNav;
 import com.vaadin.flow.component.sidenav.SideNavItem;
@@ -15,8 +18,10 @@ import com.vaadin.flow.router.BeforeEnterObserver;
 import com.vaadin.flow.server.VaadinSession;
 import com.vaadin.flow.theme.lumo.LumoUtility;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.vaadin.example.model.User;
+import org.vaadin.example.security.CustomUserDetails;
 import org.vaadin.example.service.AuthenticationService;
 
 
@@ -35,7 +40,6 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
         }
     }
 
-    private Button darkModeToggle;
 
     public MainLayout() {
         setPrimarySection(Section.DRAWER);
@@ -62,50 +66,24 @@ public class MainLayout extends AppLayout implements BeforeEnterObserver {
 
     private void addHeaderContent() {
         DrawerToggle toggle = new DrawerToggle();
-        H1 title = new H1("Financial Intelligence Platform");
+        toggle.setIcon(new SvgIcon("/icons/panel-left.svg"));
 
-        darkModeToggle = new Button("Dark Mode", click -> toggleDarkMode());
-        darkModeToggle.getElement().getStyle().set("margin-left", "auto");
+        Avatar avatar = new Avatar(getLoggedInUsername().toUpperCase());
 
-        Header header = new Header(toggle, title, darkModeToggle);
+        HorizontalLayout horizontalLayout = new HorizontalLayout();
+        horizontalLayout.add(toggle,avatar);
+        Header header = new Header(horizontalLayout);
         header.addClassNames("main-header");
-        addToNavbar(header);
-    }
 
-    private void toggleDarkMode() {
-        ThemeList themeList = UI.getCurrent().getElement().getThemeList();
-        if (themeList.contains("dark")) {
-            themeList.remove("dark");
-            darkModeToggle.setText("Dark Mode");
-        } else {
-            themeList.add("dark");
-            darkModeToggle.setText("Light Mode");
-        }
+
+
+        addToNavbar(header,avatar);
     }
 
 
-
-
-    //    private void addDrawerContent() {
-//        H2 appName = new H2("FinIntel");
-//        appName.addClassNames(LumoUtility.FontSize.LARGE);
-//        appName.addClassName("drawer-app-name");
-//
-//        Scroller scroller = new Scroller(createNavigation());
-//
-//        Button logoutButton = createLogoutButton();
-//
-//
-//        addToDrawer(
-//                appName,
-//                scroller,
-//                logoutButton,
-//                createFooter()
-//        );
-//    }
 private void addDrawerContent() {
     // Logo or App Name
-    H2 logo = new H2("FinIntel");
+    H1 logo = new H1("FinPulse");
     logo.addClassNames("sidebar-logo");
 
     // Navigation Menu
@@ -160,5 +138,15 @@ private void addDrawerContent() {
         Footer footer = new Footer();
         // Add additional footer content if needed
         return footer;
+    }
+
+    public String getLoggedInUsername() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication != null && authentication.getPrincipal() instanceof CustomUserDetails) {
+            CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+            return userDetails.getUsername();
+        } else {
+            return "Guest";
+        }
     }
 }

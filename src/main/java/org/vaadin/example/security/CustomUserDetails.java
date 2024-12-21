@@ -15,6 +15,7 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
     private Double dailySpendingLimit;
     private Set<FinancialGoal> financialGoals;
     private Set<SpendingCategory> spendingCategories;
+    private String firstName;
 
     public CustomUserDetails(
             String username,
@@ -23,16 +24,17 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
             Double income,
             Double dailySpendingLimit,
             Set<FinancialGoal> financialGoals,
-            Set<SpendingCategory> spendingCategories
+            Set<SpendingCategory> spendingCategories,
+            String firstName
     ) {
         super(username, password, authorities);
         this.income = income;
         this.dailySpendingLimit = dailySpendingLimit;
         this.financialGoals = financialGoals;
         this.spendingCategories = spendingCategories;
+        this.firstName = firstName;
     }
-
-    // Add getters for the additional fields
+    // getters
     public Double getIncome() {
         return income;
     }
@@ -64,5 +66,9 @@ public class CustomUserDetails extends org.springframework.security.core.userdet
 
     public void setSpendingCategories(Set<SpendingCategory> spendingCategories) {
         this.spendingCategories = spendingCategories;
+    }
+
+    public String getFirstName() {
+        return this.firstName;
     }
 }

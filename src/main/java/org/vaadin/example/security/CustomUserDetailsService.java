@@ -33,7 +33,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 user.getIncome(),
                 user.getDailySpendingLimit(),
                 user.getFinancialGoals(),
-                user.getSpendingCategories()
+                user.getSpendingCategories(),
+                user.getFirstName()
         );
     }
 }
