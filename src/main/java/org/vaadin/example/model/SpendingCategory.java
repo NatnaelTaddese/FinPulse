@@ -40,6 +40,10 @@ public class SpendingCategory {
         return budgetAmount;
     }
 
+    public void setBudgetAmount(double budgetAmount) {
+        this.budgetAmount = budgetAmount;
+    }
+
     public void setUser(User currentUser) {
         this.user = currentUser;
     }

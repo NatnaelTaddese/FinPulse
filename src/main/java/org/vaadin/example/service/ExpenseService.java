@@ -56,4 +56,11 @@ public class ExpenseService {
     public List<Expense> getExpensesByUser(User currentUser) {
         return expenseRepository.findByUser(currentUser);
     }
+
+    public double getTodaySpending(User currentUser) {
+        LocalDateTime startOfDay = LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0);
+        LocalDateTime endOfDay = LocalDateTime.now().withHour(23).withMinute(59).withSecond(59).withNano(999999999);
+        List<Expense> todayExpenses = expenseRepository.findByUserAndDateBetween(currentUser, startOfDay, endOfDay);
+        return todayExpenses.stream().mapToDouble(Expense::getAmount).sum();
+    }
 }

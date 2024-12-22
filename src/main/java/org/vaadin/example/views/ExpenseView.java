@@ -69,6 +69,8 @@ public class ExpenseView extends VerticalLayout {
         // Save expense
         expenseService.saveExpense(expense);
 
+        category.setBudgetAmount(amount);
+
         // Navigate back to dashboard
         getUI().ifPresent(ui -> ui.navigate("dashboard"));
     }
