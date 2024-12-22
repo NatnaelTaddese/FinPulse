@@ -130,23 +130,6 @@ vaadin-text-field.bordered::part(input-field) {
     margin-bottom: 10px;
 }
 
-/* Dark Mode Support */
-html[theme~="dark"] {
-    --lumo-base-color: #1e1e1e;
-    --lumo-contrast: #252526;
-    --lumo-text-color: #ffffff;
-    --lumo-border-color: #333;
-}
-
-html[theme~="dark"] vaadin-side-nav-item::part(content) {
-    color: var(--lumo-text-color);
-}
-
-html[theme~="dark"] vaadin-side-nav-item[selected]::part(content),
-html[theme~="dark"] vaadin-side-nav-item:hover::part(content) {
-    background-color: var(--lumo-shade-20pct);
-    color: var(--lumo-primary-color);
-}
 
 
 .onboarding-tab {
@@ -168,12 +151,17 @@ vaadin-form-layout {
 vaadin-app-layout::part(navbar) {
     justify-content: space-between;
     padding-right: 16px;
+
+    /*blur background semi transparent*/
+
 }
 
 .widgets-layout {
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
+    width: 100%;
+    justify-content: space-between;
 }
 
 .widget {
@@ -184,6 +172,10 @@ vaadin-app-layout::part(navbar) {
     flex: 1;
     min-width: 350px;
     max-width: 100%;
+}
+
+.widget-full-width {
+    width: 100%;
 }
 
 

@@ -17,7 +17,7 @@ import org.vaadin.example.service.ExpenseService;
 import java.time.LocalDate;
 import java.util.Set;
 
-@Route("expense")
+@Route(value = "expense", layout = MainLayout.class)
 @PermitAll
 public class ExpenseView extends VerticalLayout {
 

@@ -35,12 +35,13 @@ import org.vaadin.example.service.AlipayService;
 import org.vaadin.example.service.AuthenticationService;
 import org.vaadin.example.service.ExpenseService;
 
+import java.time.LocalDate;
+import java.util.*;
 
+import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.stream.Collectors;
 
 @Route(value = "dashboard", layout = MainLayout.class)
 @PageTitle("Dashboard | FinPulse")
@@ -104,7 +105,7 @@ public class DashboardView extends Composite<VerticalLayout> {
 
         Button connectAlipayButton = new Button("Connect Alipay", event -> {
             String authUrl = getAlipayAuthUrl();
-            logger.info("Redirecting to Alipay auth URL: " + authUrl);
+            logger.info("Redirecting to Alipay auth URL: {}", authUrl);
             getUI().ifPresent(ui -> ui.getPage().setLocation(authUrl));
         });
 
@@ -139,6 +140,14 @@ public class DashboardView extends Composite<VerticalLayout> {
 // Add the widgets layout to the main layout
         layout.add(widgetsLayout);
 
+        layout.add(new Hr());
+
+        Div spendingTrendsChartWidget = createSpendingTrendsChartWidget();
+        HorizontalLayout widgetsLayout2 = new HorizontalLayout(spendingTrendsChartWidget);
+        widgetsLayout2.addClassName("widgets-layout");
+        layout.add(widgetsLayout2);
+
+
         // Display Alipay account balance and recent transactions if connected
         try {
             User currentUser = authenticationService.getCurrentUser();
@@ -161,7 +170,7 @@ public class DashboardView extends Composite<VerticalLayout> {
                     } else {
                         logger.error("Failed to fetch Alipay account balance or transactions", e);
                         Notification.show("Failed to fetch Alipay account balance or transactions: " + e.getMessage(),
-                                5000, Notification.Position.BOTTOM_CENTER);
+                                5000, Notification.Position.BOTTOM_END);
                     }
                 }
             }
@@ -315,6 +324,69 @@ public class DashboardView extends Composite<VerticalLayout> {
 
         widget.add(title, chart);
         return widget;
+    }
+
+    private Div createSpendingTrendsChartWidget() {
+        Div widget = new Div();
+        widget.addClassName("widget");
+
+        H3 title = new H3("Spending Trends (Last 12 Days)");
+
+        // Create the column chart
+        Chart chart = new Chart(ChartType.COLUMN);
+        Configuration conf = chart.getConfiguration();
+
+        Tooltip tooltip = new Tooltip();
+        tooltip.setShared(true);
+        conf.setTooltip(tooltip);
+
+        XAxis xAxis = new XAxis();
+        xAxis.setCategories(getLast12Days().toArray(new String[0]));
+        conf.addxAxis(xAxis);
+
+        YAxis yAxis = new YAxis();
+        yAxis.setTitle("Amount Spent");
+        conf.addyAxis(yAxis);
+
+        // Fetch expenses for the current user
+        User currentUser = authenticationService.getCurrentUser();
+        List<Expense> expenses = expenseService.getExpensesForUser(currentUser);
+
+        // Group expenses by day and category, and sum the amounts
+        Map<String, Map<String, Double>> dailyCategoryTotals = new HashMap<>();
+        for (Expense expense : expenses) {
+            String day = expense.getDate().toLocalDate().toString();
+            String categoryName = expense.getCategory().getName();
+            dailyCategoryTotals.putIfAbsent(day, new HashMap<>());
+            Map<String, Double> categoryTotals = dailyCategoryTotals.get(day);
+            categoryTotals.put(categoryName, categoryTotals.getOrDefault(categoryName, 0.0) + expense.getAmount());
+        }
+
+        // Add data to the series
+        for (String category : getCategoryNames(expenses)) {
+            DataSeries series = new DataSeries(category);
+            for (String day : getLast12Days()) {
+                double amount = dailyCategoryTotals.getOrDefault(day, new HashMap<>()).getOrDefault(category, 0.0);
+                series.add(new DataSeriesItem(day, amount));
+            }
+            conf.addSeries(series);
+        }
+
+        widget.add(title, chart);
+        widget.addClassName("widget-full-width");
+        return widget;
+    }
+
+    private List<String> getLast12Days() {
+        List<String> last12Days = new ArrayList<>();
+        for (int i = 11; i >= 0; i--) {
+            last12Days.add(LocalDate.now().minusDays(i).toString());
+        }
+        return last12Days;
+    }
+
+    private Set<String> getCategoryNames(List<Expense> expenses) {
+        return expenses.stream().map(expense -> expense.getCategory().getName()).collect(Collectors.toSet());
     }
 
     private String getAlipayAuthUrl() {
