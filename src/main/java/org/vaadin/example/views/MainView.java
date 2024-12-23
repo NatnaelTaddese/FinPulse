@@ -1,226 +1,274 @@
 package org.vaadin.example.views;
 
-import com.vaadin.flow.theme.lumo.LumoUtility;
-
-import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Hr;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.*;
+import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.example.service.GreetService;
-
-/**
- * A sample Vaadin view class.
- * <p>
- * To implement a Vaadin view just extend any Vaadin component and use @Route
- * annotation to announce it in a URL as a Spring managed bean.
- * <p>
- * A new instance of this class is created for every new user and every browser
- * tab/window.
- * <p>
- * The main view contains a text field for getting the user name and a button
- * that shows a greeting message in a notification.
- */
-
+@Route("")
 @AnonymousAllowed
-@Route
 public class MainView extends VerticalLayout {
 
-    /**
-     * Construct a new Vaadin view.
-     * <p>
-     * Build the initial UI state for the user accessing the application.
-     *
-     * @param service
-     *            The message service. Automatically injected Spring managed bean.
-     */
-    public MainView(@Autowired GreetService service) {
+    public MainView() {
+        addClassName("landing-page");
+        setSizeFull();
+        setPadding(false);
+        setSpacing(false);
 
-        H1 title = new H1("Welcome to FinPulse");
-        title.addClassName("centered-title");
-// Boilerplate code from the Vaadin starter project
-// FOR REFERENCE
-//        // Use TextField for standard text input
-//        TextField textField = new TextField("Your name");
-//        textField.addClassName("bordered");
-//
-//        // Button click listeners can be defined as lambda expressions
-//        Button button = new Button("Say hello", e -> {
-//            if(textField.getValue().equals("login")){
-//                // navigate to dashboard view
-//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
-//            }
-//            add(new Paragraph(service.greet(textField.getValue())));
-//        });
-//
-//        // Theme variants give you predefined extra styles for components.
-//        // Example: Primary button has a more prominent look.
-//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-//
-//        // You can specify keyboard shortcuts for buttons.
-//        // Example: Pressing enter in this view clicks the Button.
-//        button.addClickShortcut(Key.ENTER);
-//
-//        // Use custom CSS classes to apply styling. This is defined in
-//        // styles.css.
-//        addClassName("centered-content");
-//
-//        add(textField, button);
-title.addClassNames(LumoUtility.AlignSelf.CENTER);
-// Boilerplate code from the Vaadin starter project
-// FOR REFERENCE
-//        // Use TextField for standard text input
-//        TextField textField = new TextField("Your name");
-//        textField.addClassName("bordered");
-//
-//        // Button click listeners can be defined as lambda expressions
-//        Button button = new Button("Say hello", e -> {
-//            if(textField.getValue().equals("login")){
-//                // navigate to dashboard view
-//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
-//            }
-//            add(new Paragraph(service.greet(textField.getValue())));
-//        });
-//
-//        // Theme variants give you predefined extra styles for components.
-//        // Example: Primary button has a more prominent look.
-//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-//
-//        // You can specify keyboard shortcuts for buttons.
-//        // Example: Pressing enter in this view clicks the Button.
-//        button.addClickShortcut(Key.ENTER);
-//
-//        // Use custom CSS classes to apply styling. This is defined in
-//        // styles.css.
-//        addClassName("centered-content");
-//
-//        add(textField, button);
-// Boilerplate code from the Vaadin starter project
-// FOR REFERENCE
-//        // Use TextField for standard text input
-//        TextField textField = new TextField("Your name");
-//        textField.addClassName("bordered");
-//
-//        // Button click listeners can be defined as lambda expressions
-//        Button button = new Button("Say hello", e -> {
-//            if(textField.getValue().equals("login")){
-//                // navigate to dashboard view
-//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
-//            }
-//            add(new Paragraph(service.greet(textField.getValue())));
-//        });
-//
-//        // Theme variants give you predefined extra styles for components.
-//        // Example: Primary button has a more prominent look.
-//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-//
-//        // You can specify keyboard shortcuts for buttons.
-//        // Example: Pressing enter in this view clicks the Button.
-//        button.addClickShortcut(Key.ENTER);
-//
-//        // Use custom CSS classes to apply styling. This is defined in
-//        // styles.css.
-//        addClassName("centered-content");
-//
-//        add(textField, button);
-// Boilerplate code from the Vaadin starter project
-// FOR REFERENCE
-//        // Use TextField for standard text input
-//        TextField textField = new TextField("Your name");
-//        textField.addClassName("bordered");
-//
-//        // Button click listeners can be defined as lambda expressions
-//        Button button = new Button("Say hello", e -> {
-//            if(textField.getValue().equals("login")){
-//                // navigate to dashboard view
-//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
-//            }
-//            add(new Paragraph(service.greet(textField.getValue())));
-//        });
-//
-//        // Theme variants give you predefined extra styles for components.
-//        // Example: Primary button has a more prominent look.
-//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-//
-//        // You can specify keyboard shortcuts for buttons.
-//        // Example: Pressing enter in this view clicks the Button.
-//        button.addClickShortcut(Key.ENTER);
-//
-//        // Use custom CSS classes to apply styling. This is defined in
-//        // styles.css.
-//        addClassName("centered-content");
-//
-//        add(textField, button);
+        add(
+            createNavBar(),
+            createHeroSection(),
+            createFeaturesSection(),
+            createStatisticsSection(),
+            createTestimonialsSection(),
+            createCtaSection(),
+            createFooter()
+        );
+    }
 
-        Button loginButton = new Button("Login", e -> {
-            // navigate to login view
-            getUI().ifPresent(ui -> ui.navigate("login"));
-        });
+    private HorizontalLayout createNavBar() {
+        HorizontalLayout navbar = new HorizontalLayout();
+        navbar.addClassName("glass-navbar");
 
-        loginButton.addThemeVariants(
-                ButtonVariant.LUMO_PRIMARY
+        H2 logo = new H2("FinPulse");
+        logo.addClassName("nav-logo");
+
+        HorizontalLayout navLinks = new HorizontalLayout();
+        navLinks.add(
+            new Anchor("#features", "Features"),
+            new Anchor("#about", "About"),
+            new Anchor("#testimonials", "Testimonials")
+        );
+        navLinks.addClassName("nav-links");
+
+        HorizontalLayout authButtons = new HorizontalLayout();
+        Button loginButton = new Button("Login", e -> getUI().ifPresent(ui -> ui.navigate("login")));
+        Button signupButton = new Button("Sign Up", e -> getUI().ifPresent(ui -> ui.navigate("signup")));
+        loginButton.addClassName("nav-login-btn");
+        signupButton.addClassName("nav-signup-btn");
+        authButtons.add(loginButton, signupButton);
+
+        navbar.add(logo, navLinks, authButtons);
+        return navbar;
+    }
+
+    private Div createHeroSection() {
+        Div hero = new Div();
+        hero.addClassName("hero-section");
+
+        VerticalLayout heroContent = new VerticalLayout();
+        heroContent.addClassName("hero-content");
+
+        H1 title = new H1("Master Your Money, Shape Your Future");
+        title.addClassName("hero-title");
+
+        Paragraph motto = new Paragraph("Where Financial Intelligence Meets Personal Growth");
+        motto.addClassName("hero-motto");
+
+        Paragraph subtitle = new Paragraph(
+            "Transform your financial journey with FinPulse's intelligent tracking, " +
+            "real-time insights, and personalized guidance."
+        );
+        subtitle.addClassName("hero-subtitle");
+
+        Button ctaButton = new Button("Start Your Journey", e -> getUI().ifPresent(ui -> ui.navigate("signup")));
+        ctaButton.addClassName("hero-cta-btn");
+
+        heroContent.add(title, motto, subtitle, ctaButton);
+        hero.add(heroContent);
+        return hero;
+    }
+
+    // Additional methods for other sections...
+    private Div createFeaturesSection() {
+        Div features = new Div();
+        features.addClassName("features-section");
+    
+        H2 title = new H2("Why Choose FinPulse?");
+        title.addClassName("section-title");
+    
+        HorizontalLayout cards = new HorizontalLayout();
+        cards.addClassName("feature-cards");
+    
+        cards.add(
+            createFeatureCard(
+                VaadinIcon.CHART_LINE,
+                "Smart Analytics",
+                "Advanced tracking and insights to help you understand your spending patterns"
+            ),
+            createFeatureCard(
+                VaadinIcon.PIGGY_BANK,
+                "Goal Setting",
+                "Set and achieve your financial goals with personalized recommendations"
+            ),
+            createFeatureCard(
+                VaadinIcon.SHIELD,
+                "Secure Integration",
+                "Seamlessly connect with Alipay for real-time transaction monitoring"
+            )
+        );
+    
+        features.add(title, cards);
+        return features;
+    }
+    
+    private Div createStatisticsSection() {
+        Div stats = new Div();
+        stats.addClassName("statistics-section");
+    
+        HorizontalLayout counters = new HorizontalLayout();
+        counters.addClassName("stat-counters");
+    
+        counters.add(
+            createStatCounter("5", "Active Users"),
+            createStatCounter("¥1000+", "Tracked Monthly"),
+            createStatCounter("98%", "User Satisfaction")
+        );
+    
+        stats.add(counters);
+        return stats;
+    }
+    
+    private Div createTestimonialsSection() {
+        Div testimonials = new Div();
+        testimonials.addClassName("testimonials-section");
+    
+        H2 title = new H2("What Our Users Say");
+        title.addClassName("section-title");
+    
+        HorizontalLayout cards = new HorizontalLayout();
+        cards.addClassName("testimonial-cards");
+    
+        cards.add(
+            createTestimonialCard(
+                "Sarah Chen",
+                "Student",
+                "FinPulse helped me manage my university expenses effectively!",
+                5
+            ),
+            createTestimonialCard(
+                "David Wang",
+                "Professional",
+                "The best financial tracking app I've ever used.",
+                5
+            )
+        );
+    
+        testimonials.add(title, cards);
+        return testimonials;
+    }
+    
+
+    private Div createFeatureCard(VaadinIcon icon, String title, String description) {
+        Div card = new Div();
+        card.addClassName("feature-card");
+
+        Icon featureIcon = icon.create();
+        featureIcon.addClassName("feature-icon");
+
+        H3 featureTitle = new H3(title);
+        featureTitle.addClassName("feature-title");
+
+        Paragraph featureDesc = new Paragraph(description);
+        featureDesc.addClassName("feature-description");
+
+        card.add(featureIcon, featureTitle, featureDesc);
+        return card;
+    }
+
+
+    private Div createCtaSection() {
+        Div cta = new Div();
+        cta.addClassName("cta-section");
+
+        H2 title = new H2("Start Your Financial Journey Today");
+        title.addClassName("cta-title");
+
+        Paragraph subtitle = new Paragraph("Join thousands of users who have transformed their financial habits with FinPulse");
+        subtitle.addClassName("cta-subtitle");
+
+        Button startButton = new Button("Get Started Free", e -> getUI().ifPresent(ui -> ui.navigate("signup")));
+        startButton.addClassName("cta-button");
+
+        cta.add(title, subtitle, startButton);
+        return cta;
+    }
+
+    private Footer createFooter() {
+        Footer footer = new Footer();
+        footer.addClassName("footer");
+
+        Div footerContent = new Div();
+        footerContent.addClassName("footer-content");
+
+        // Company Info
+        Div companyInfo = new Div();
+        companyInfo.addClassName("footer-section");
+        companyInfo.add(
+            new H3("FinPulse"),
+            new Paragraph("Your Intelligent Financial Companion")
         );
 
-        Button signupButton = new Button("Sign Up", e -> {
-            // navigate to signup view
-            getUI().ifPresent(ui -> ui.navigate("signup"));
-        });
-
-        signupButton.addThemeVariants(
-                ButtonVariant.MATERIAL_OUTLINED
+        // Links
+        Div links = new Div();
+        links.addClassName("footer-section");
+        links.add(
+            new H4("Quick Links"),
+            new UnorderedList(
+                new ListItem(new Anchor("#", "Features")),
+                new ListItem(new Anchor("#", "About")),
+                new ListItem(new Anchor("#", "Contact"))
+            )
         );
 
-        Button dashboardButton = new Button("Dashboard", e -> {
-            // navigate to dashboard view
-            getUI().ifPresent(ui -> ui.navigate("dashboard"));
-        });
-
-        dashboardButton.addThemeVariants(
-                ButtonVariant.LUMO_TERTIARY
+        // Contact
+        Div contact = new Div();
+        contact.addClassName("footer-section");
+        contact.add(
+            new H4("Contact"),
+            new Paragraph("support@finpulse.com"),
+            new Paragraph("+86 123 456 7890")
         );
 
-        add(title, loginButton, signupButton);
-        add(new Hr());
-        add(dashboardButton);
-        addClassName("centered-content");
-        setAlignItems(Alignment.CENTER);
-        setHeightFull();
+        footerContent.add(companyInfo, links, contact);
+        footer.add(footerContent);
 
-        // Boilerplate code from the Vaadin starter project
-        // FOR REFERENCE
+        return footer;
+    }
 
+    private Div createStatCounter(String number, String label) {
+        Div counter = new Div();
+        counter.addClassName("stat-counter");
 
-//        // Use TextField for standard text input
-//        TextField textField = new TextField("Your name");
-//        textField.addClassName("bordered");
-//
-//        // Button click listeners can be defined as lambda expressions
-//        Button button = new Button("Say hello", e -> {
-//            if(textField.getValue().equals("login")){
-//                // navigate to dashboard view
-//                getUI().ifPresent(ui -> ui.navigate("dashboard"));
-//            }
-//            add(new Paragraph(service.greet(textField.getValue())));
-//        });
-//
-//        // Theme variants give you predefined extra styles for components.
-//        // Example: Primary button has a more prominent look.
-//        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-//
-//        // You can specify keyboard shortcuts for buttons.
-//        // Example: Pressing enter in this view clicks the Button.
-//        button.addClickShortcut(Key.ENTER);
-//
-//        // Use custom CSS classes to apply styling. This is defined in
-//        // styles.css.
-//        addClassName("centered-content");
-//
-//        add(textField, button);
+        H3 statNumber = new H3(number);
+        statNumber.addClassName("stat-number");
+
+        Paragraph statLabel = new Paragraph(label);
+        statLabel.addClassName("stat-label");
+
+        counter.add(statNumber, statLabel);
+        return counter;
+    }
+
+    private Div createTestimonialCard(String name, String role, String quote, int rating) {
+        Div card = new Div();
+        card.addClassName("testimonial-card");
+
+        H4 userName = new H4(name);
+        userName.addClassName("testimonial-name");
+
+        Span userRole = new Span(role);
+        userRole.addClassName("testimonial-role");
+
+        Paragraph userQuote = new Paragraph(quote);
+        userQuote.addClassName("testimonial-quote");
+
+        card.add(userName, userRole, userQuote);
+        return card;
     }
 }

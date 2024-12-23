@@ -40,6 +40,7 @@ public class ExpenseView extends VerticalLayout {
         amountField = new TextField("Amount");
         categoryComboBox = new ComboBox<>("Category");
         categoryComboBox.setItems(spendingCategories);
+        categoryComboBox.setItemLabelGenerator(SpendingCategory::getName);
         datePicker = new DatePicker("Date");
         descriptionField = new TextField("Description");
 
