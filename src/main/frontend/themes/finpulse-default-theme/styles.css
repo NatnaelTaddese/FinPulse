@@ -1,6 +1,7 @@
 @import url(https://cdn.jsdelivr.net/fontsource/css/inter@latest/index.css);
 @import url(https://cdn.jsdelivr.net/fontsource/css/merriweather@latest/index.css);
 @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 
 @font-face {
@@ -14,6 +15,12 @@
 @font-face {
     font-family: 'Parafina';
     src: url("ParafinaTrial-BlackM-BF66bd7815b9340.otf");
+}
+
+/*CSS reset*/
+* {
+    box-sizing: border-box;
+
 }
 
 html {
@@ -250,7 +257,6 @@ vaadin-app-layout::part(navbar) {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem;
     text-align: center;
 }
 
@@ -291,7 +297,6 @@ vaadin-app-layout::part(navbar) {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 2rem;
     text-align: center;
 }
 
@@ -325,6 +330,7 @@ vaadin-app-layout::part(navbar) {
 
 /* Features Section */
 .features-section {
+    width: 100%;
     padding: 4rem 2rem;
     background-color: var(--color-light);
     text-align: center;
@@ -354,7 +360,7 @@ vaadin-app-layout::part(navbar) {
     border-radius: 1rem;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     width: 300px;
-    text-align: left;
+    text-align: center;
 }
 
 .feature-card:hover {
@@ -382,7 +388,7 @@ vaadin-app-layout::part(navbar) {
 /* Statistics Section */
 .statistics-section {
     padding: 4rem 2rem;
-    background-color: var(--color-neutral);
+    background-color: var(--color-dark);
     color: var(--color-light);
     text-align: center;
     width: 100%;
@@ -507,7 +513,6 @@ vaadin-app-layout::part(navbar) {
 
 /* Footer Section */
 .footer {
-    padding: 4rem 2rem;
     background-color: var(--color-dark);
     color: var(--color-light);
     text-align: center;
@@ -550,7 +555,6 @@ vaadin-app-layout::part(navbar) {
 
 
 /* Enhancements */
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap');
 
 :root {
     /* Color System */
@@ -706,6 +710,12 @@ body {
         display: block;
     }
 
+    .nav-auth-buttons{
+        gap: 1px;
+    }
+    .nav-signup-btn{
+        display: none;
+    }
     .nav-links.active {
         display: flex;
         flex-direction: column;
@@ -730,6 +740,21 @@ body {
     .nav-buttons.active button {
         width: 100%;
     }
+
+    .testimonial-cards {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+        align-items: center;
+
+    }
+}
+
+.testimonial-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
 /* Hero Section Enhancement */
@@ -743,13 +768,17 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-xl);
+    /*padding: var(--spacing-xl);*/
     text-align: center;
 }
 
 .hero-content {
     max-width: 800px;
     margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-title {
@@ -764,6 +793,7 @@ body {
     font-size: clamp(1.25rem, 3vw, 1.5rem);
     color: var(--color-neutral);
     margin-bottom: var(--spacing-xl);
+    margin-top: -30px;
 }
 
 .hero-cta-btn {
@@ -772,6 +802,7 @@ body {
     padding: var(--spacing-md) var(--spacing-xl);
     border-radius: var(--radius-lg);
     font-weight: 600;
+    font-size: 1rem;
     border: none;
     cursor: pointer;
     transition: var(--transition-normal);
@@ -791,4 +822,27 @@ body {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+vaadin-login-form-wrapper{
+    background: var(--glass-bg);
+}
+
+.footer-section ul{
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section h4{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #7d7d5c;
+}
+
+.footer-section h3{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #7d7d5c;
 }

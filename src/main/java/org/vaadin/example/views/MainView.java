@@ -1,10 +1,9 @@
 package org.vaadin.example.views;
 
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
+import com.vaadin.flow.component.icon.SvgIcon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -52,6 +51,7 @@ public class MainView extends VerticalLayout {
         loginButton.addClassName("nav-login-btn");
         signupButton.addClassName("nav-signup-btn");
         authButtons.add(loginButton, signupButton);
+        authButtons.addClassName("nav-auth-buttons");
 
         navbar.add(logo, navLinks, authButtons);
         return navbar;
@@ -84,7 +84,6 @@ public class MainView extends VerticalLayout {
         return hero;
     }
 
-    // Additional methods for other sections...
     private Div createFeaturesSection() {
         Div features = new Div();
         features.addClassName("features-section");
@@ -97,17 +96,17 @@ public class MainView extends VerticalLayout {
     
         cards.add(
             createFeatureCard(
-                VaadinIcon.CHART_LINE,
+                new SvgIcon("icons/chart-line.svg"),
                 "Smart Analytics",
                 "Advanced tracking and insights to help you understand your spending patterns"
             ),
             createFeatureCard(
-                VaadinIcon.PIGGY_BANK,
+                new SvgIcon("icons/save.svg"),
                 "Goal Setting",
                 "Set and achieve your financial goals with personalized recommendations"
             ),
             createFeatureCard(
-                VaadinIcon.SHIELD,
+                new SvgIcon("/icons/shield-check.svg"),
                 "Secure Integration",
                 "Seamlessly connect with Alipay for real-time transaction monitoring"
             )
@@ -164,12 +163,12 @@ public class MainView extends VerticalLayout {
     }
     
 
-    private Div createFeatureCard(VaadinIcon icon, String title, String description) {
+    private Div createFeatureCard(SvgIcon icon, String title, String description) {
         Div card = new Div();
         card.addClassName("feature-card");
 
-        Icon featureIcon = icon.create();
-        featureIcon.addClassName("feature-icon");
+
+        icon.addClassName("feature-icon");
 
         H3 featureTitle = new H3(title);
         featureTitle.addClassName("feature-title");
@@ -177,7 +176,7 @@ public class MainView extends VerticalLayout {
         Paragraph featureDesc = new Paragraph(description);
         featureDesc.addClassName("feature-description");
 
-        card.add(featureIcon, featureTitle, featureDesc);
+        card.add(icon, featureTitle, featureDesc);
         return card;
     }
 
