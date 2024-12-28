@@ -18,11 +18,6 @@
 }
 
 /*CSS reset*/
-* {
-    box-sizing: border-box;
-
-}
-
 html {
     --lumo-base-color: rgba(255, 248, 242, 1);
     --lumo-font-family: Inter;
@@ -38,7 +33,15 @@ html {
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
+
+    font-size: 16px;
+}
+
+* {
+    box-sizing: border-box;
+
 }
 
 :root {
@@ -50,15 +53,37 @@ html {
     --green: #2ecc71;
     --red: #e74c3c;
 
+    /* Color System */
+    --color-primary-dark: #4dd152;
     --color-primary: #5ff164;
     --color-light: #fbffcd;
     --color-neutral: #7d7d5c;
     --color-dark: #242415;
-    --glass-bg: rgba(251, 255, 205, 0.8);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+    /* Glass Effects */
+    --glass-bg: rgba(251, 255, 205, 0.9);
+    --glass-border: rgba(255, 255, 255, 0.25);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* Border Radius */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1.5rem;
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
 }
 
 h1 {
@@ -68,8 +93,16 @@ h1 {
 }
 
 
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--color-light);
+    color: var(--color-dark);
+    line-height: 1.6;
+    margin: 0;
+}
 
-/*BUTTONS*/
+
+/*VAADIN Components*/
 
 vaadin-button {
     border-radius: 300px;
@@ -99,7 +132,6 @@ vaadin-text-field {
     padding-block: 1.5rem;
 }
 
-
 vaadin-tabsheet::part(tabs-container) {
     justify-content: center;
     margin: auto;
@@ -116,16 +148,30 @@ vaadin-tabsheet::part(content) {
     max-width: 600px;
 }
 
-/* Example: CSS class name to center align the content . */
-.centered-content {
-    margin: 0 auto;
-    max-width: 250px;
-}
-
-/* Example: the style is applied only to the textfields which have the `bordered` class name. */
+/* the style is applied only to the textfields which have the `bordered` class name. */
 vaadin-text-field.bordered::part(input-field) {
     box-shadow: inset 0 0 0 1px var(--lumo-contrast-30pct);
     background-color: var(--lumo-base-color);
+}
+
+vaadin-login-form-wrapper{
+    background: var(--glass-bg);
+}
+
+vaadin-form-layout {
+    --vaadin-form-layout-column-spacing: 2em;
+}
+
+vaadin-app-layout::part(navbar) {
+    justify-content: space-between;
+    padding-right: 16px;
+}
+
+
+/* Utility */
+.centered-content {
+    margin: 0 auto;
+    max-width: 250px;
 }
 
 .centered-title {
@@ -136,12 +182,7 @@ vaadin-text-field.bordered::part(input-field) {
     white-space: nowrap;
 }
 
-.widget {
-    background-color: var(--widget-color);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    padding: 15px;
-}
+
 
 .timeline-entry {
     display: flex;
@@ -149,7 +190,6 @@ vaadin-text-field.bordered::part(input-field) {
     align-items: center;
     margin-bottom: 10px;
 }
-
 
 
 .onboarding-tab {
@@ -164,17 +204,6 @@ vaadin-text-field.bordered::part(input-field) {
     margin-bottom: 2em;
 }
 
-vaadin-form-layout {
-    --vaadin-form-layout-column-spacing: 2em;
-}
-
-vaadin-app-layout::part(navbar) {
-    justify-content: space-between;
-    padding-right: 16px;
-
-    /*blur background semi transparent*/
-
-}
 
 .widgets-layout {
     display: flex;
@@ -183,6 +212,7 @@ vaadin-app-layout::part(navbar) {
     width: 100%;
     justify-content: space-between;
 }
+
 
 .widget {
     background-color: var(--widget-color);
@@ -227,14 +257,20 @@ vaadin-app-layout::part(navbar) {
 
 .glass-navbar {
     background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
     border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
     box-shadow: var(--shadow-sm);
     position: fixed;
     width: 100%;
     z-index: 1000;
-    transition: all 0.3s ease;
+    padding: var(--spacing-md) var(--spacing-xl);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: var(--transition-normal);
 }
 
 .glass-navbar:hover {
@@ -243,28 +279,27 @@ vaadin-app-layout::part(navbar) {
 
 .nav-logo {
     font-family: 'Lora', serif;
+    font-size: 1.75rem;
+    font-weight: 700;
     color: var(--color-dark);
     margin: 0;
 }
 
 .nav-links {
-    gap: 2rem;
-}
-
-.hero-section {
-    min-height: 100vh;
-    background: linear-gradient(135deg, var(--color-light), var(--color-primary));
     display: flex;
+    gap: var(--spacing-xl);
     align-items: center;
-    justify-content: center;
-    text-align: center;
 }
 
 .nav-links a {
     color: var(--color-dark);
     text-decoration: none;
     font-weight: 500;
+    position: relative;
+    padding: var(--spacing-xs) 0;
+
     transition: color 0.3s ease;
+
 }
 
 .nav-links a:hover {
@@ -290,43 +325,115 @@ vaadin-app-layout::part(navbar) {
     margin-left: 1rem;
 }
 
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-primary);
+    transition: var(--transition-normal);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-buttons button {
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    transition: var(--transition-normal);
+    cursor: pointer;
+}
+
+.nav-buttons button:first-child {
+    background: transparent;
+    border: 2px solid var(--color-dark);
+    color: var(--color-dark);
+}
+
+.nav-buttons button:last-child {
+    background: var(--color-primary);
+    border: none;
+    color: var(--color-dark);
+}
+
+.nav-buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+
 /* Hero Section */
 .hero-section {
+    width: 100%;
     min-height: 100vh;
-    background: linear-gradient(135deg, var(--color-light), var(--color-primary));
+    background: linear-gradient(135deg,
+    var(--color-light) 0%,
+    rgba(95, 241, 100, 0.2) 100%
+    );
     display: flex;
     align-items: center;
     justify-content: center;
+    /*padding: var(--spacing-xl);*/
     text-align: center;
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-title {
     font-family: 'Lora', serif;
-    font-size: 4rem;
     font-weight: 700;
-    margin-bottom: 1rem;
     color: var(--color-dark);
+
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.2;
 }
 
 .hero-motto {
     font-family: 'Lora', serif;
-    font-size: 1.5rem;
     color: var(--color-neutral);
-    margin-bottom: 2rem;
+
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    margin-bottom: var(--spacing-xl);
+    margin-top: -30px;
 }
 
 .hero-cta-btn {
     background: var(--color-dark);
-    color: var(--color-light);
-    padding: 1rem 2rem;
-    border-radius: 2rem;
     font-weight: 600;
-    transition: transform 0.3s ease;
+
+    background: var(--color-primary);
+    color: var(--color-dark);
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-normal);
 }
 
 .hero-cta-btn:hover {
     transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    background: var(--color-primary-dark);
 }
+
 
 /* Features Section */
 .features-section {
@@ -547,147 +654,29 @@ vaadin-app-layout::part(navbar) {
     color: var(--color-primary);
 }
 
+.footer-section ul{
+    list-style: none;
+    padding: 0;
+}
+
+.footer-section h4{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #7d7d5c;
+}
+
+.footer-section h3{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-family: 'Inter', sans-serif;
+    color: #7d7d5c;
+}
+
 .copyright {
     margin-top: 2rem;
     font-size: 0.875rem;
     color: var(--color-neutral);
-}
-
-
-/* Enhancements */
-
-:root {
-    /* Color System */
-    --color-primary: #5ff164;
-    --color-primary-dark: #4dd152;
-    --color-light: #fbffcd;
-    --color-neutral: #7d7d5c;
-    --color-dark: #242415;
-
-    /* Glass Effects */
-    --glass-bg: rgba(251, 255, 205, 0.9);
-    --glass-border: rgba(255, 255, 255, 0.25);
-
-    /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
-    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
-
-    /* Spacing */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
-
-    /* Border Radius */
-    --radius-sm: 0.375rem;
-    --radius-md: 0.75rem;
-    --radius-lg: 1.5rem;
-
-    /* Transitions */
-    --transition-fast: 150ms ease;
-    --transition-normal: 250ms ease;
-}
-
-/* Base Styles */
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background-color: var(--color-light);
-    color: var(--color-dark);
-    line-height: 1.6;
-    margin: 0;
-}
-
-/* Enhanced Navbar */
-.glass-navbar {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-sm);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-    padding: var(--spacing-md) var(--spacing-xl);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: var(--transition-normal);
-}
-
-.nav-logo {
-    font-family: 'Lora', serif;
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--color-dark);
-    margin: 0;
-}
-
-.nav-links {
-    display: flex;
-    gap: var(--spacing-xl);
-    align-items: center;
-}
-
-.nav-links a {
-    color: var(--color-dark);
-    text-decoration: none;
-    font-weight: 500;
-    position: relative;
-    padding: var(--spacing-xs) 0;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--color-primary);
-    transition: var(--transition-normal);
-}
-
-.nav-links a:hover::after {
-    width: 100%;
-}
-
-.nav-buttons {
-    display: flex;
-    gap: var(--spacing-md);
-}
-
-.nav-buttons button {
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border-radius: var(--radius-md);
-    font-weight: 600;
-    transition: var(--transition-normal);
-    cursor: pointer;
-}
-
-.nav-buttons button:first-child {
-    background: transparent;
-    border: 2px solid var(--color-dark);
-    color: var(--color-dark);
-}
-
-.nav-buttons button:last-child {
-    background: var(--color-primary);
-    border: none;
-    color: var(--color-dark);
-}
-
-.nav-buttons button:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
 }
 
 /* Mobile Navigation */
@@ -757,63 +746,6 @@ body {
     gap: 2rem;
 }
 
-/* Hero Section Enhancement */
-.hero-section {
-    width: 100%;
-    min-height: 100vh;
-    background: linear-gradient(135deg,
-    var(--color-light) 0%,
-    rgba(95, 241, 100, 0.2) 100%
-    );
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    /*padding: var(--spacing-xl);*/
-    text-align: center;
-}
-
-.hero-content {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.hero-title {
-    font-family: 'Lora', serif;
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
-    margin-bottom: var(--spacing-lg);
-    line-height: 1.2;
-}
-
-.hero-motto {
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    color: var(--color-neutral);
-    margin-bottom: var(--spacing-xl);
-    margin-top: -30px;
-}
-
-.hero-cta-btn {
-    background: var(--color-primary);
-    color: var(--color-dark);
-    padding: var(--spacing-md) var(--spacing-xl);
-    border-radius: var(--radius-lg);
-    font-weight: 600;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-    transition: var(--transition-normal);
-}
-
-.hero-cta-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-    background: var(--color-primary-dark);
-}
-
 /* Animation Classes */
 .fade-in {
     animation: fadeIn 0.5s ease-in;
@@ -824,25 +756,5 @@ body {
     to { opacity: 1; transform: translateY(0); }
 }
 
-vaadin-login-form-wrapper{
-    background: var(--glass-bg);
-}
 
-.footer-section ul{
-    list-style: none;
-    padding: 0;
-}
 
-.footer-section h4{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-family: 'Inter', sans-serif;
-    color: #7d7d5c;
-}
-
-.footer-section h3{
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    font-family: 'Inter', sans-serif;
-    color: #7d7d5c;
-}
