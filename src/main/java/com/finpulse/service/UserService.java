@@ -1,13 +1,13 @@
-package org.vaadin.example.service;
+package com.finpulse.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.vaadin.example.model.FinancialGoal;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
-import org.vaadin.example.repository.FinancialGoalRepository;
-import org.vaadin.example.repository.SpendingCategoryRepository;
-import org.vaadin.example.repository.UserRepository;
+import com.finpulse.model.FinancialGoal;
+import com.finpulse.model.SpendingCategory;
+import com.finpulse.model.User;
+import com.finpulse.repository.FinancialGoalRepository;
+import com.finpulse.repository.SpendingCategoryRepository;
+import com.finpulse.repository.UserRepository;
 
 @Service
 public class UserService {

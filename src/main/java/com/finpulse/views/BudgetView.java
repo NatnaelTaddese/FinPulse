@@ -1,12 +1,10 @@
-package org.vaadin.example.views;
+package com.finpulse.views;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Hr;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -16,12 +14,12 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.example.model.Expense;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
-import org.vaadin.example.service.AuthenticationService;
-import org.vaadin.example.service.ExpenseService;
-import org.vaadin.example.service.UserService;
+import com.finpulse.model.Expense;
+import com.finpulse.model.SpendingCategory;
+import com.finpulse.model.User;
+import com.finpulse.service.AuthenticationService;
+import com.finpulse.service.ExpenseService;
+import com.finpulse.service.UserService;
 
 import java.util.HashMap;
 import java.util.Map;

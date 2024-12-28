@@ -1,4 +1,4 @@
-package org.vaadin.example.views;
+package com.finpulse.views;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.grid.Grid;
@@ -9,10 +9,10 @@ import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.example.model.Expense;
-import org.vaadin.example.model.User;
-import org.vaadin.example.service.AuthenticationService;
-import org.vaadin.example.service.ExpenseService;
+import com.finpulse.model.Expense;
+import com.finpulse.model.User;
+import com.finpulse.service.AuthenticationService;
+import com.finpulse.service.ExpenseService;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;

@@ -1,4 +1,4 @@
-package org.vaadin.example.components;
+package com.finpulse.components;
 
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;

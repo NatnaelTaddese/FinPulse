@@ -1,12 +1,12 @@
-package org.vaadin.example.service;
+package com.finpulse.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.vaadin.example.model.Expense;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
-import org.vaadin.example.repository.ExpenseRepository;
-import org.vaadin.example.repository.SpendingCategoryRepository;
+import com.finpulse.model.Expense;
+import com.finpulse.model.SpendingCategory;
+import com.finpulse.model.User;
+import com.finpulse.repository.ExpenseRepository;
+import com.finpulse.repository.SpendingCategoryRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;

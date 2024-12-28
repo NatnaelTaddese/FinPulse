@@ -1,4 +1,4 @@
-package org.vaadin.example.controller;
+package com.finpulse.controller;
 
 import com.alipay.api.response.AlipayUserInfoShareResponse;
 import jakarta.servlet.http.HttpServletRequest;
@@ -6,10 +6,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.vaadin.example.model.User;
-import org.vaadin.example.service.AlipayService;
-import org.vaadin.example.service.AuthenticationService;
-import org.vaadin.example.service.UserService;
+import com.finpulse.model.User;
+import com.finpulse.service.AlipayService;
+import com.finpulse.service.AuthenticationService;
+import com.finpulse.service.UserService;
 
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;

@@ -1,4 +1,4 @@
-package org.vaadin.example.service;
+package com.finpulse.service;
 
 import java.io.Serializable;
 import org.springframework.stereotype.Service;

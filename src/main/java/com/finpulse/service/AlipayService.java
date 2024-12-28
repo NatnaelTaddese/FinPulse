@@ -1,4 +1,4 @@
-package org.vaadin.example.service;
+package com.finpulse.service;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -17,7 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.vaadin.example.model.Transaction;
+import com.finpulse.model.Transaction;
 
 import java.util.ArrayList;
 import java.util.List;

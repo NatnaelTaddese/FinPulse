@@ -1,4 +1,4 @@
-package org.vaadin.example.views;
+package com.finpulse.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.Composite;
@@ -25,9 +25,9 @@ import com.vaadin.flow.data.converter.StringToDoubleConverter;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.PermitAll;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
-import org.vaadin.example.service.AuthenticationService;
+import com.finpulse.model.SpendingCategory;
+import com.finpulse.model.User;
+import com.finpulse.service.AuthenticationService;
 
 import java.util.*;
 import java.util.stream.Collectors;

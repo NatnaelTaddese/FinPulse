@@ -1,9 +1,9 @@
-package org.vaadin.example.repository;
+package com.finpulse.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
+import com.finpulse.model.SpendingCategory;
+import com.finpulse.model.User;
 
 import java.util.List;
 

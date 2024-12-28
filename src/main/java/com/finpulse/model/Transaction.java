@@ -1,4 +1,4 @@
-package org.vaadin.example.model;
+package com.finpulse.model;
 
 public class Transaction {
     private String date;

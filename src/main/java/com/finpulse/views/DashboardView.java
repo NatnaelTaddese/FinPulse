@@ -1,4 +1,4 @@
-package org.vaadin.example.views;
+package com.finpulse.views;
 
 import com.vaadin.flow.component.Composite;
 import com.vaadin.flow.component.UI;
@@ -6,7 +6,6 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.Chart;
 import com.vaadin.flow.component.charts.model.*;
 import com.vaadin.flow.component.charts.model.style.SolidColor;
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.SvgIcon;
@@ -25,20 +24,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.vaadin.example.components.ExpenseDrawer;
-import org.vaadin.example.model.Expense;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
-import org.vaadin.example.model.Transaction;
-import org.vaadin.example.security.CustomUserDetails;
-import org.vaadin.example.service.AlipayService;
-import org.vaadin.example.service.AuthenticationService;
-import org.vaadin.example.service.ExpenseService;
+import com.finpulse.model.Expense;
+import com.finpulse.model.User;
+import com.finpulse.security.CustomUserDetails;
+import com.finpulse.service.AlipayService;
+import com.finpulse.service.AuthenticationService;
+import com.finpulse.service.ExpenseService;
 
 import java.time.LocalDate;
 import java.util.*;
 
-import java.lang.reflect.Array;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.stream.Collectors;

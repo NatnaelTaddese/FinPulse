@@ -1,11 +1,10 @@
-package org.vaadin.example.repository;
+package com.finpulse.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.vaadin.example.model.Expense;
-import org.vaadin.example.model.SpendingCategory;
-import org.vaadin.example.model.User;
+import com.finpulse.model.Expense;
+import com.finpulse.model.SpendingCategory;
+import com.finpulse.model.User;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 

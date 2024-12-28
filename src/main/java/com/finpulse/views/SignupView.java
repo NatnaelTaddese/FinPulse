@@ -1,4 +1,4 @@
-package org.vaadin.example.views;
+package com.finpulse.views;
 
 import com.vaadin.flow.theme.lumo.LumoUtility;
 
@@ -17,7 +17,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 
-import org.vaadin.example.service.AuthenticationService;
+import com.finpulse.service.AuthenticationService;
 
 @AnonymousAllowed
 @Route("signup")

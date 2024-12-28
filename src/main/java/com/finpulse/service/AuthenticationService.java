@@ -1,13 +1,12 @@
-package org.vaadin.example.service;
+package com.finpulse.service;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.vaadin.example.model.Expense;
-import org.vaadin.example.model.User;
-import org.vaadin.example.model.UserRole;
-import org.vaadin.example.repository.UserRepository;
+import com.finpulse.model.User;
+import com.finpulse.model.UserRole;
+import com.finpulse.repository.UserRepository;
 
 import java.util.Set;
 

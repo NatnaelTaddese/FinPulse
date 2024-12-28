@@ -1,8 +1,8 @@
-package org.vaadin.example.security;
+package com.finpulse.security;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.vaadin.example.model.FinancialGoal;
-import org.vaadin.example.model.SpendingCategory;
+import com.finpulse.model.FinancialGoal;
+import com.finpulse.model.SpendingCategory;
 
 import java.io.Serializable;
 import java.util.Collection;

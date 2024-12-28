@@ -1,4 +1,4 @@
-package org.vaadin.example.model;
+package com.finpulse.model;
 
 public enum UserRole {
     USER,

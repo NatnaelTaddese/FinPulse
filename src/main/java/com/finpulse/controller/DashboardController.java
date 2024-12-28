@@ -1,4 +1,4 @@
-package org.vaadin.example.controller;
+package com.finpulse.controller;
 
 public class DashboardController {
 }

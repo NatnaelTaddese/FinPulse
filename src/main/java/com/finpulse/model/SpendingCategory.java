@@ -1,10 +1,6 @@
-package org.vaadin.example.model;
+package com.finpulse.model;
 
 import jakarta.persistence.*;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Set;
 
 @Entity
 @Table(name = "spending_categories")
