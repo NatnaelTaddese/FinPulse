@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to the **FinPulse Documentation**! FinPulse is a sophisticated financial management platform developed using **Java Spring Boot** and **Vaadin Flow**. It empowers users to manage their finances, set budgeting goals, monitor financial health, and generate comprehensive financial reports. This documentation is tailored for developers, contributors, and technical stakeholders to provide a detailed understanding of the platform's architecture, setup, and extensibility.
+FinPulse is a financial management platform developed using **Java Spring Boot** and **Vaadin Flow**. It empowers users to manage their finances, set budgeting goals, monitor financial health, and generate comprehensive financial reports. 
 
 ## Overview
 
