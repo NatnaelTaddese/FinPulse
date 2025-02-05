@@ -20,6 +20,7 @@ FinPulse is a comprehensive financial management platform built with **Java Spri
 - Maven 3.8+
 - PostgreSQL 13+
 - Git
+- Alipay Developer Account
 
 ## Quick Start
 
@@ -51,7 +52,57 @@ spring.datasource.password=your_password
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-### 3. Build and Run
+### 3. Alipay Integration Setup
+
+1. Create Alipay Developer Account:
+   - Register at [Alipay Open Platform](https://open.alipay.com)
+   - Complete business verification
+   - Create application in development console
+
+2. Generate API Keys:
+   - Go to Alipay Developer Center
+   - Create new application
+   - Generate public/private key pair
+   - Upload public key to Alipay platform
+   - Copy credentials to `.env` file:
+     - `ALIPAY_APP_ID`
+     - `ALIPAY_PRIVATE_KEY`
+     - `ALIPAY_PUBLIC_KEY`
+
+3. Configure Redirect URI:
+   - Add your domain to Alipay whitelist
+   - Update `alipay.redirectUri` in  `application.properties`
+
+
+   - For development, use:
+     ```properties
+     alipay.serverUrl=https://openapi.alipaydev.com/gateway.do
+     alipay.redirectUri=http://localhost:8080/alipay/connect
+     ```
+   - For production, use:
+     ```properties
+     alipay.serverUrl=https://openapi.alipay.com/gateway.do
+     alipay.redirectUri=https://your-domain.com/alipay/connect
+     ```
+
+### 4. Spring Security Setup
+
+1. Configure initial admin credentials in `.env`
+
+
+```properties
+SPRING_SECURITY_USER_NAME=username(admin by default)
+SPRING_SECURITY_USER_PASSWORD=password(admin by default)
+```
+
+
+```properties
+spring.security.remember-me.token-validity-seconds=86400
+server.servlet.session.timeout=1h
+```
+
+
+### 5. Build and Run
 ```bash
 mvn clean install
 mvn spring-boot:run
